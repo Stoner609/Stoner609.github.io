@@ -31,4 +31,4 @@ GROUP BY ID
 ```
 
 > 結果：
-![](/images/20170614T-SQL.JPG)
+![](/images/db/20170614T-SQL.JPG)

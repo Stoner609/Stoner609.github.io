@@ -16,8 +16,7 @@ Database：MS-SQL、MongoDB
 
 Version control：Git、TFS
 
-喜歡Coding以及學習新的技術，但沒有瘋狂熱愛到無時無刻都想要寫Code的程度
-更喜歡玩PS4、看影集、爬山看海
+要相信所有你學的點會連成一條線才不會失去學新東西的熱情。
 
 Project
 ---

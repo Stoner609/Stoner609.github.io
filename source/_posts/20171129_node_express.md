@@ -49,4 +49,4 @@ app.listen(3000, function () {
 $ node index.js
 ```
 
-![](/images/expressHelloWorld.JPG)
+![](/images/javascript/expressHelloWorld.JPG)
