@@ -20,8 +20,24 @@ Version control：Git、TFS
 
 Project
 ---
-- Bacchus: Node.js、Vue.js、Webpack、Oracle、MongoDB
+{% tabs First unique name %}
+<!-- tab Bacchus -->
 
-- [可樂自由行](https://www.colatour.com.tw/C10P_Package/C10P001_Projects.aspx?Para=*,HKG,*,1,0,%E9%A6%99%E6%B8%AF) : 自由行產品內部建檔 B2C B2B 相關專案 (.NET webform、jQuery、MS-SQL、moment.js)
+**Bacchus 網路雲端訂房系統**
+使用到的技術：Node.js、Vue.js、Webpack、Oracle、MongoDB
+<!-- endtab -->
 
-- 公司內部系統(EBS) : 參與資料庫設計、商業邏輯、訂單處理等等相關事宜 (.NET webform、jQuery、MS-SQL)
+<!-- tab 可樂自由行-->
+**[可樂自由行](https://www.colatour.com.tw/C10P_Package/C10P001_Projects.aspx?Para=*,HKG,*,1,0,%E9%A6%99%E6%B8%AF)**
+開發個人自由行，包含行程選擇、訂購機票、預約飯店、加購票務
+使用到的技術：.NET webform、jQuery、MS-SQL、Moment.js
+<!-- endtab -->
+
+<!-- tab 可樂旅遊內部系統(EBS) -->
+**可樂EBS**
+參與資料庫設計、商業邏輯、訂單處理等等相關事宜
+ 1. 自由行專案
+ 2. 商務部專案
+ 使用到的技術：.NET webform、jQuery、MS-SQL、Moment.js
+<!-- endtab -->
+{% endtabs %}
