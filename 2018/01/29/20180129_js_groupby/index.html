@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="目前要處理一個陣列中的資料，但我想把他 group by 後重新整理成一個陣列">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript GroupBy">
+<meta property="og:url" content="http://yoursite.com/2018/01/29/20180129_js_groupby/index.html">
+<meta property="og:site_name" content="Stoner Blog">
+<meta property="og:description" content="目前要處理一個陣列中的資料，但我想把他 group by 後重新整理成一個陣列">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:image" content="http://yoursite.com/images/javascript/20180129_groupby.JPG">
+<meta property="og:updated_time" content="2019-01-09T01:07:43.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript GroupBy">
+<meta name="twitter:description" content="目前要處理一個陣列中的資料，但我想把他 group by 後重新整理成一個陣列">
+<meta name="twitter:image" content="http://yoursite.com/images/javascript/20180129_groupby.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/29/20180129_js_groupby/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript GroupBy | Stoner Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stoner Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首頁</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>關於</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>標籤<span class="badge">14</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>歸檔<span class="badge">56</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/20180129_js_groupby/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stoner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/SLM.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stoner Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript GroupBy
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2018-01-29 14:00:00" itemprop="dateCreated datePublished" datetime="2018-01-29T14:00:00+08:00">2018-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2019-01-09 09:07:43" itemprop="dateModified" datetime="2019-01-09T09:07:43+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目前要處理一個陣列中的資料，但我想把他 group by 後重新整理成一個陣列<br><a id="more"></a></p>
+<p><code>sample code</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//想要依照location作為依據重新整理成一份更清楚的明細資料</span></span><br><span class="line"><span class="keyword">var</span> myList = [</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"港澳中國"</span>, <span class="attr">citycode</span>: <span class="string">"HKG"</span>, <span class="attr">cityname</span>: <span class="string">"香港"</span>, <span class="attr">location</span>: <span class="string">"港澳"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"港澳中國"</span>, <span class="attr">citycode</span>: <span class="string">"MFM"</span>, <span class="attr">cityname</span>: <span class="string">"澳門"</span>, <span class="attr">location</span>: <span class="string">"港澳"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"港澳中國"</span>, <span class="attr">citycode</span>: <span class="string">"PEK"</span>, <span class="attr">cityname</span>: <span class="string">"北京"</span>, <span class="attr">location</span>: <span class="string">"中國"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"港澳中國"</span>, <span class="attr">citycode</span>: <span class="string">"SHA"</span>, <span class="attr">cityname</span>: <span class="string">"上海"</span>, <span class="attr">location</span>: <span class="string">"中國"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"東北亞"</span>, <span class="attr">citycode</span>: <span class="string">"TYO"</span>, <span class="attr">cityname</span>: <span class="string">"東京"</span>, <span class="attr">location</span>: <span class="string">"日本"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"東北亞"</span>, <span class="attr">citycode</span>: <span class="string">"OKA"</span>, <span class="attr">cityname</span>: <span class="string">"沖繩"</span>, <span class="attr">location</span>: <span class="string">"日本"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">area</span>: <span class="string">"東北亞"</span>, <span class="attr">citycode</span>: <span class="string">"SEL"</span>, <span class="attr">cityname</span>: <span class="string">"首爾"</span>, <span class="attr">location</span>: <span class="string">"南韓"</span>&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>現在要利用 area 作為groupby依據，重新再整理一個新的格式<br>加入以下片段<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//會回傳 Object 型別</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.groupBy = <span class="function"><span class="keyword">function</span> (<span class="params">prop</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">groups, item</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> val = item[prop];</span><br><span class="line">	    groups[val] = groups[val] || [];</span><br><span class="line">	    groups[val].push(item);</span><br><span class="line">	    <span class="keyword">return</span> groups;</span><br><span class="line">	&#125;, &#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myGroupByList = myList.groupBy(<span class="string">'area'</span>); </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.dir(myGroupByList); <span class="comment">//Object 型別</span></span><br><span class="line"><span class="comment">//Result</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&gt; Object</span></span><br><span class="line"><span class="comment">  &gt; 東北亞: Array(3)</span></span><br><span class="line"><span class="comment">    &gt; 0: &#123;area: "東北亞", citycode: "TYO", cityname: "東京", location: "日本"&#125;</span></span><br><span class="line"><span class="comment">    &gt; 1: &#123;area: "東北亞", citycode: "OKA", cityname: "沖繩", location: "日本"&#125;</span></span><br><span class="line"><span class="comment">    &gt; 2: &#123;area: "東北亞", citycode: "SEL", cityname: "首爾", location: "南韓"&#125;</span></span><br><span class="line"><span class="comment">  &gt; 港澳中國: Array(4)</span></span><br><span class="line"><span class="comment">    &gt; 0: &#123;area: "港澳中國", citycode: "HKG", cityname: "香港", location: "港澳"&#125;</span></span><br><span class="line"><span class="comment">    &gt; 1: &#123;area: "港澳中國", citycode: "MFM", cityname: "澳門", location: "港澳"&#125;</span></span><br><span class="line"><span class="comment">    &gt; 2: &#123;area: "港澳中國", citycode: "PEK", cityname: "北京", location: "中國"&#125;</span></span><br><span class="line"><span class="comment">    &gt; 3: &#123;area: "港澳中國", citycode: "SHA", cityname: "上海", location: "中國"&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<p>把 Object 的型別資料轉成 Array 的型別<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> GroupArea = <span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myArray = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> object) &#123;</span><br><span class="line">        myArray.push(&#123;</span><br><span class="line">            <span class="string">'area'</span>: key,</span><br><span class="line">            <span class="string">'country'</span>: object[key]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> myArray;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newList = GroupArea(myGroupByList);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.dir(newList); <span class="comment">//Array 型別</span></span><br><span class="line"><span class="comment">//Result</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&gt; Array(2)</span></span><br><span class="line"><span class="comment">  &gt; 0:</span></span><br><span class="line"><span class="comment">      area: '港澳中國'</span></span><br><span class="line"><span class="comment">      country: Array(4)</span></span><br><span class="line"><span class="comment">       &gt; 0: &#123;area: "港澳中國", citycode: "HKG", cityname: "香港", location: "港澳"&#125;</span></span><br><span class="line"><span class="comment">       &gt; 1: &#123;area: "港澳中國", citycode: "MFM", cityname: "澳門", location: "港澳"&#125;</span></span><br><span class="line"><span class="comment">       &gt; 2: &#123;area: "港澳中國", citycode: "PEK", cityname: "北京", location: "中國"&#125;</span></span><br><span class="line"><span class="comment">       &gt; 3: &#123;area: "港澳中國", citycode: "SHA", cityname: "上海", location: "中國"&#125;</span></span><br><span class="line"><span class="comment">  &gt; 1:</span></span><br><span class="line"><span class="comment">      area: '東北亞'</span></span><br><span class="line"><span class="comment">      country: Array(3)</span></span><br><span class="line"><span class="comment">       &gt; 0: &#123;area: "東北亞", citycode: "TYO", cityname: "東京", location: "日本"&#125;</span></span><br><span class="line"><span class="comment">       &gt; 1: &#123;area: "東北亞", citycode: "OKA", cityname: "沖繩", location: "日本"&#125;</span></span><br><span class="line"><span class="comment">       &gt; 2: &#123;area: "東北亞", citycode: "SEL", cityname: "首爾", location: "南韓"&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<p>大guy4這樣<br>但仔細看資料中又會發現還可以再利用 location 去做 Group by，但這次我只需要用上面寫好的兩種方法就可以做到一樣的效果了 (有點土法煉鋼)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改 GroupArea 這方法</span></span><br><span class="line"><span class="keyword">var</span> GroupArea = <span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myArray = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> object) &#123;</span><br><span class="line">        myArray.push(&#123;</span><br><span class="line">            <span class="string">'area'</span>: key,</span><br><span class="line">            <span class="string">'country'</span>: GroupCountry(object[key].groupBy(<span class="string">'location'</span>))</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> myArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//新增 GroupCountry這方法</span></span><br><span class="line"><span class="keyword">var</span> GroupCountry = <span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myArray = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> object) &#123;</span><br><span class="line">		myArray.push(&#123;</span><br><span class="line">			<span class="string">'country'</span>: key,</span><br><span class="line">			<span class="string">'citys'</span>: object[key]</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> myArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>大概結果<br><img src="/images/javascript/20180129_groupby.JPG" alt=""></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://www.consolelog.io/group-by-in-javascript" target="_blank" rel="noopener">Group By in Javascript</a><br><a href="https://stackoverflow.com/questions/7306669/how-to-get-all-properties-values-of-a-javascript-object-without-knowing-the-key" target="_blank" rel="noopener">How to get all properties values of a Javascript Object (without knowing the keys)?</a><br><a href="https://stackoverflow.com/questions/14446511/what-is-the-most-efficient-method-to-groupby-on-a-javascript-array-of-objects" target="_blank" rel="noopener">What is the most efficient method to groupby on a JavaScript array of objects?</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/04/20180104_js_idontknow/" rel="next" title="JavaScript 意義不明">
+                <i class="fa fa-chevron-left"></i> JavaScript 意義不明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/01/20180201_cs_cors/" rel="prev" title="跨源資源分享 (CORS)">
+                跨源資源分享 (CORS) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/SLM.jpg" alt="Stoner">
+            
+              <p class="site-author-name" itemprop="name">Stoner</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分類</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">標籤</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Stoner609" title="GitHub &rarr; https://github.com/Stoner609" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">1.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-bomb"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stoner</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

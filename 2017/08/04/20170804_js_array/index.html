@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="JS數組基本筆記原文章連結">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript ES6 數組">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/20170804_js_array/index.html">
+<meta property="og:site_name" content="Stoner Blog">
+<meta property="og:description" content="JS數組基本筆記原文章連結">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-01-09T01:07:43.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript ES6 數組">
+<meta name="twitter:description" content="JS數組基本筆記原文章連結">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/04/20170804_js_array/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript ES6 數組 | Stoner Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stoner Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首頁</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>關於</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>標籤<span class="badge">14</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>歸檔<span class="badge">56</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/20170804_js_array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stoner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/SLM.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stoner Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript ES6 數組
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-08-04 12:52:46" itemprop="dateCreated datePublished" datetime="2017-08-04T12:52:46+08:00">2017-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2019-01-09 09:07:43" itemprop="dateModified" datetime="2019-01-09T09:07:43+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JS數組基本筆記<br><a href="https://wcc723.github.io/javascript/2017/06/29/es6-native-array/" target="_blank" rel="noopener">原文章連結</a><br><a id="more"></a></p>
+<p>以下皆為自己紀錄 (杞人憂天怕原文官網掛掉，所以建議看原文就可以了，以下都只是複製貼上)</p>
+<p>filter()<br>find()<br>forEach()<br>map()<br>every()<br>some()<br>reduce()</p>
+<h3 id="初始資料"><a href="#初始資料" class="headerlink" title="初始資料"></a>初始資料</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相同的陣列</span></span><br><span class="line"><span class="keyword">var</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Casper'</span>,</span><br><span class="line">    like: <span class="string">'鍋燒意麵'</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Wang'</span>,</span><br><span class="line">    like: <span class="string">'炒麵'</span>,</span><br><span class="line">    age: <span class="number">24</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Bobo'</span>,</span><br><span class="line">    like: <span class="string">'蘿蔔泥'</span>,</span><br><span class="line">    age: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'滷蛋'</span>,</span><br><span class="line">    like: <span class="string">'蘿蔔泥'</span>,</span><br><span class="line">    age: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="Array-prototype-filter"><a href="#Array-prototype-filter" class="headerlink" title="Array.prototype.filter()"></a>Array.prototype.filter()</h2><p>filter() 會回傳一個陣列，其條件是 return 後方為 true 的物件，很適合用在搜尋符合條件的資料。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filterEmpty = people.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(filterEmpty);    <span class="comment">// 沒有條件，會是一個空陣列</span></span><br><span class="line"><span class="keyword">var</span> filterAgeThan5 = people.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">5</span>;       <span class="comment">// 取得大於五歲的</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(filterAgeThan5); <span class="comment">// Casper, Wang 這兩個物件</span></span><br><span class="line"><span class="keyword">var</span> filterDouble = people.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> index % <span class="number">2</span> === <span class="number">1</span>;    <span class="comment">// 取得陣列中雙數的物件</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(filterDouble);   <span class="comment">// Wang, 滷蛋 這兩個物件</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-find"><a href="#Array-prototype-find" class="headerlink" title="Array.prototype.find()"></a>Array.prototype.find()</h2><p>find() 與 filter() 很像，但 find() 只會回傳一次值，且是第一次為 true 的值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findEmpty = people.find(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(findEmpty);          <span class="comment">// 沒有條件，會是 undefined</span></span><br><span class="line"><span class="keyword">var</span> findAgeThan5 = people.find(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">5</span>;           <span class="comment">// 取得大於五歲的</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(findAgeThan5);       <span class="comment">// 雖然答案有兩個，但只會回傳 Casper 這一個物件</span></span><br><span class="line"><span class="keyword">var</span> findLike = people.find(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.like === <span class="string">'蘿蔔泥'</span>;  <span class="comment">// 取得陣列 like === '蘿蔔泥'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(findLike);           <span class="comment">// 雖然答案有兩個，但只會回傳第一個 Bobo 物件</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach()"></a>Array.prototype.forEach()</h2><p>forEach 是這幾個陣列函式最單純的一個，不會額外回傳值，只單純執行每個陣列內的物件或值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> forEachIt = people.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item, index, array); <span class="comment">// 物件, 索引, 全部陣列</span></span><br><span class="line">  <span class="keyword">return</span> item;                     <span class="comment">// forEach 沒在 return 的，所以這邊寫了也沒用</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(forEachIt);            <span class="comment">// undefined</span></span><br><span class="line">people.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  item.age = item.age + <span class="number">1</span>;         <span class="comment">// forEach 就如同 for，不過寫法更容易</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(people);               <span class="comment">// 全部 age + 1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-map"><a href="#Array-prototype-map" class="headerlink" title="Array.prototype.map()"></a>Array.prototype.map()</h2><p>使用 map() 時他需要回傳一個值，他會透過函式內所回傳的值組合成一個陣列。<br>如果不回傳則是 undefined<br>回傳數量等於原始陣列的長度<br>這很適合將原始的變數運算後重新組合一個新的陣列。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mapEmpty = people.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(mapEmpty);    <span class="comment">// [undefined, undefined, undefined, undefined]</span></span><br><span class="line"><span class="keyword">var</span> mapAgeThan5 = people.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">5</span>;    <span class="comment">// 比較大於五歲的</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(mapAgeThan5); <span class="comment">// [true, true, false, false]</span></span><br><span class="line"><span class="keyword">var</span> mapAgeThan5_2 = people.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 錯誤示範</span></span><br><span class="line">  <span class="keyword">if</span> (item.age &gt; <span class="number">5</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> item;              <span class="comment">// 回傳大於五歲的</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;               <span class="comment">// 別以為空的或是 false 就不會回傳</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(mapAgeThan5_2);   <span class="comment">// [&#123;name: 'Casper'...&#125;, &#123;name: 'Wang'...&#125;, false, false]</span></span><br><span class="line"><span class="keyword">var</span> mapEat = people.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (item.like !== <span class="string">'蘿蔔泥'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;item.like&#125;</span> 好吃`</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;item.like&#125;</span> 不好吃`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(mapEat);          <span class="comment">// ["鍋燒意麵 好吃", "炒麵 好吃", "蘿蔔泥 不好吃", "蘿蔔泥 不好吃"]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-every"><a href="#Array-prototype-every" class="headerlink" title="Array.prototype.every()"></a>Array.prototype.every()</h2><p>every() 可以檢查所有的陣列是否符合條件，這僅會回傳一個值 true or false，可以用來檢查陣列中的內容是否符合特定條件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Casper'</span>,</span><br><span class="line">    like: <span class="string">'鍋燒意麵'</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Wang'</span>,</span><br><span class="line">    like: <span class="string">'炒麵'</span>,</span><br><span class="line">    age: <span class="number">24</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'Bobo'</span>,</span><br><span class="line">    like: <span class="string">'蘿蔔泥'</span>,</span><br><span class="line">    age: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'滷蛋'</span>,</span><br><span class="line">    like: <span class="string">'蘿蔔泥'</span>,</span><br><span class="line">    age: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> ans = array.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item, index, array); <span class="comment">// 物件, 索引, 全部陣列</span></span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">10</span> <span class="comment">// 當全部 age 大於 10 才能回傳 true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans); <span class="comment">// false: 只要有部分不符合，則為 false</span></span><br><span class="line"><span class="keyword">var</span> ans2 = array.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &lt; <span class="number">25</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans2); <span class="comment">// true: 全部 age 都小於 25</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-some"><a href="#Array-prototype-some" class="headerlink" title="Array.prototype.some()"></a>Array.prototype.some()</h2><p>some() 與 every() 非常接近，都是回傳 true or false，差異僅在 every() 需完全符合，some() 僅需要部分符合。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ans = people.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">10</span> <span class="comment">// 當全部 age 大於 10 才能回傳 true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans);  <span class="comment">// true: 只要有部分符合，則為 true</span></span><br><span class="line"><span class="keyword">var</span> ans2 = people.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &lt; <span class="number">25</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans2); <span class="comment">// true: 只要有部分符合，則為 true  </span></span><br><span class="line"><span class="keyword">var</span> ans2 = people.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.age &gt; <span class="number">25</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans2); <span class="comment">// false: 全部都不符合則為 false</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Array-prototype-reduce"><a href="#Array-prototype-reduce" class="headerlink" title="Array.prototype.reduce()"></a>Array.prototype.reduce()</h2><p>reduce() 和其他幾個差異就很大了，他可以與前一個回傳的值再次作運算，參數包含以下：<br>accumulator: 前一個參數，如果是第一個陣列的話，值是以另外傳入或初始化的值<br>currentValue: 當前變數<br>currentIndex: 當前索引<br>array: 全部陣列<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reduceEmpty = people.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">accumulator, currentValue, currentIndex, array</span>)</span>&#123;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(reduceEmpty);                 <span class="comment">// 沒有條件，會是 undefined</span></span><br><span class="line"><span class="keyword">var</span> reducePlus = people.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">accumulator, currentValue, currentIndex, array</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 分別為前一個回傳值, 目前值, 當前索引值</span></span><br><span class="line">  <span class="built_in">console</span>.log(accumulator, currentValue, currentIndex);</span><br><span class="line">  <span class="keyword">return</span> accumulator + currentValue.age;  <span class="comment">// 與前一個值相加</span></span><br><span class="line">&#125;, <span class="number">0</span>);                                    <span class="comment">// 傳入初始化值為 0</span></span><br><span class="line"><span class="built_in">console</span>.log(reducePlus);                  <span class="comment">// 總和為 46</span></span><br><span class="line"><span class="keyword">var</span> reducePlus = people.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">accumulator, currentValue, currentIndex, array</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'reduce'</span>, accumulator, currentValue, currentIndex)</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max( accumulator, currentValue.age ); <span class="comment">// 與前一個值比較哪個大</span></span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(reducePlus);                  <span class="comment">// 最大值為 24</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>預設的陣列行為 (本篇中除了 reduce() 是傳入初始資料) 內的 this 是指向 window，如果要改，可以在 function 後傳入。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arr.forEach(function callback(currentValue, index, array) &#123;</span></span><br><span class="line"><span class="comment">// your iterator</span></span><br><span class="line"><span class="comment">// &#125;[, thisArg]);</span></span><br><span class="line"><span class="keyword">var</span> ans3 = people.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// 這邊的 this 就會使用後方傳入的</span></span><br><span class="line">  <span class="keyword">return</span> item.age &lt; <span class="number">25</span></span><br><span class="line">&#125;, people);         <span class="comment">// 傳入的物件，替代 this，如果無則是 window</span></span><br></pre></td></tr></table></figure></p>
+<p>參考資料<br><a href="https://wcc723.github.io/javascript/2017/06/29/es6-native-array/" target="_blank" rel="noopener">卡斯柏</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/04/20170804_net_datatableToList/" rel="next" title="如何使用C#將DataTable轉為自訂物件List<class>">
+                <i class="fa fa-chevron-left"></i> 如何使用C#將DataTable轉為自訂物件List<class>
+              </class></a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/08/20170808_js_querySelectorAll/" rel="prev" title="JavaScript querySelectorAll 使用 forEach">
+                JavaScript querySelectorAll 使用 forEach <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/SLM.jpg" alt="Stoner">
+            
+              <p class="site-author-name" itemprop="name">Stoner</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分類</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">標籤</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Stoner609" title="GitHub &rarr; https://github.com/Stoner609" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始資料"><span class="nav-number">1.</span> <span class="nav-text">初始資料</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-filter"><span class="nav-number"></span> <span class="nav-text">Array.prototype.filter()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-find"><span class="nav-number"></span> <span class="nav-text">Array.prototype.find()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-forEach"><span class="nav-number"></span> <span class="nav-text">Array.prototype.forEach()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-map"><span class="nav-number"></span> <span class="nav-text">Array.prototype.map()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-every"><span class="nav-number"></span> <span class="nav-text">Array.prototype.every()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-some"><span class="nav-number"></span> <span class="nav-text">Array.prototype.some()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-reduce"><span class="nav-number"></span> <span class="nav-text">Array.prototype.reduce()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number"></span> <span class="nav-text">其他</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-bomb"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stoner</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

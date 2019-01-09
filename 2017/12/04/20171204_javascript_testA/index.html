@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-TW">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/SLM.jpg?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="JavaScript 典型的面試題目">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 練習題">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/20171204_javascript_testA/index.html">
+<meta property="og:site_name" content="Stoner Blog">
+<meta property="og:description" content="JavaScript 典型的面試題目">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-01-09T01:07:43.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 練習題">
+<meta name="twitter:description" content="JavaScript 典型的面試題目">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/04/20171204_javascript_testA/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript 練習題 | Stoner Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-TW">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stoner Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切換導航欄">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首頁</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>關於</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>標籤<span class="badge">14</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>歸檔<span class="badge">56</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/20171204_javascript_testA/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stoner">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/SLM.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stoner Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 練習題
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+
+              
+                
+              
+
+              <time title="創建時間：2017-12-04 15:40:00" itemprop="dateCreated datePublished" datetime="2017-12-04T15:40:00+08:00">2017-12-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新於</span>
+                
+                <time title="修改時間：2019-01-09 09:07:43" itemprop="dateModified" datetime="2019-01-09T09:07:43+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JavaScript 典型的面試題目<br><a id="more"></a></p>
+<p>整理js的觀念文章後，在做網路上的典型題目<br>看看自己是否真的有了解</p>
+<h2 id="問題一：作用域-Scope"><a href="#問題一：作用域-Scope" class="headerlink" title="問題一：作用域(Scope)"></a>問題一：作用域(Scope)</h2><p>console出來的值是多少?<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = b = <span class="number">5</span>;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_1" value="解答" type="button"><div id="A_1" style="display:none">輸出：5<br>備註：a是局部變數，b是全域變數<br>如果要用”嚴格模式”(‘use strict’)的話<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line"><span class="meta">   ‘use strict’</span>;</div><div class="line">   <span class="keyword">var</span> a = <span class="built_in">window</span>.b = <span class="number">5</span>;</div><div class="line">})();</div><div class="line"> </div><div class="line"><span class="built_in">console</span>.log(b);</div></pre></td></tr></tbody></table></figure></div></div>
+
+<h2 id="問題二：創建原生方法"><a href="#問題二：創建原生方法" class="headerlink" title="問題二：創建原生方法"></a>問題二：創建原生方法</h2><p>在String對象上創建一個<code>repeatify</code>函數，接收的這個參數，代表要重複幾次。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello'</span>.repeatify(<span class="number">3</span>));</span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_2" value="解答" type="button"><div id="A_2" style="display:none"><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.prototype.repeatify = <span class="built_in">String</span>.prototype.repeatify || <span class="function"><span class="keyword">function</span>(<span class="params">times</span>) </span>{</div><div class="line">   <span class="keyword">var</span> str = <span class="string">‘’</span>;</div><div class="line"> </div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; times; i++) {</div><div class="line">      str += <span class="keyword">this</span>;</div><div class="line">   }</div><div class="line"> </div><div class="line">   <span class="keyword">return</span> str;</div><div class="line">};</div></pre></td></tr></tbody></table></figure></div></div>
+
+
+<h2 id="問題三：變量提升（Hoisting）"><a href="#問題三：變量提升（Hoisting）" class="headerlink" title="問題三：變量提升（Hoisting）"></a>問題三：變量提升（Hoisting）</h2><p>執行解過答案會是?<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(a);</span><br><span class="line">   <span class="built_in">console</span>.log(foo());</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">test();</span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_3" value="解答" type="button"><div id="A_3" style="display:none">執行結果是 undefined 和 2</div></div>
+
+
+<h2 id="問題四：在JavaScript中，this是如何工作的"><a href="#問題四：在JavaScript中，this是如何工作的" class="headerlink" title="問題四：在JavaScript中，this是如何工作的?"></a>問題四：在JavaScript中，<code>this</code>是如何工作的?</h2><p>console出來的結果?<br>能的話順便說出原因<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullname = <span class="string">'John Doe'</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">   fullname: <span class="string">'Colin Ihrig'</span>,</span><br><span class="line">   prop: &#123;</span><br><span class="line">      fullname: <span class="string">'Aurelio De Rosa'</span>,</span><br><span class="line">      getFullname: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.fullname;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.prop.getFullname());</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> test = obj.prop.getFullname;</span><br><span class="line"><span class="built_in">console</span>.log(test());</span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_4" value="解答" type="button"><div id="A_4" style="display:none">執行結果是 Aurelio De Rosa 和 John Doe</div></div>
+
+
+<h2 id="問題五：call-和-apply"><a href="#問題五：call-和-apply" class="headerlink" title="問題五：call() 和 apply()"></a>問題五：call() 和 apply()</h2><p>承上題，讓最後一個<code>console.log()</code>輸出<code>Aurelio De Rosa</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// todo</span></span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_5" value="解答" type="button"><div id="A_5" style="display:none"><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(test.call(obj.prop));</div></pre></td></tr></tbody></table></figure></div></div>
+
+
+<h2 id="問題六：閉包-Closures"><a href="#問題六：閉包-Closures" class="headerlink" title="問題六：閉包(Closures)"></a>問題六：閉包(Closures)</h2><p>點擊第一個Button及第四個Button，分別console出來的結果是?<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</span><br><span class="line">   nodes[i].addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'You clicked element #'</span> + i);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_6" value="解答" type="button"><div id="A_6" style="display:none">nodes.length假如是10的話，點擊第一個跟第四個都是10</div></div>
+
+
+<h2 id="問題七：閉包-Closures"><a href="#問題七：閉包-Closures" class="headerlink" title="問題七：閉包(Closures)"></a>問題七：閉包(Closures)</h2><p>承上題，點擊時第一個要輸出0，第二個要輸出1，依此類推。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// todo</span></span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_7" value="解答" type="button"><div id="A_7" style="display:none">第一個解決方法：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nodes = <span class="built_in">document</span>.getElementsByTagName(<span class="string">‘button’</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) {</div><div class="line">   nodes[i].addEventListener(<span class="string">‘click’</span>, (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>{</div><div class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">         <span class="built_in">console</span>.log(<span class="string">‘You clicked element #’</span> + i);</div><div class="line">      }</div><div class="line">   })(i));</div><div class="line">}</div></pre></td></tr></tbody></table></figure><br>第二個解決方法：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handlerWrapper</span>(<span class="params">i</span>) </span>{</div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">‘You clicked element #’</span> + i);</div><div class="line">   }</div><div class="line">}</div><div class="line"> </div><div class="line"><span class="keyword">var</span> nodes = <span class="built_in">document</span>.getElementsByTagName(<span class="string">‘button’</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) {</div><div class="line">   nodes[i].addEventListener(<span class="string">‘click’</span>, handlerWrapper(i));</div><div class="line">}</div></pre></td></tr></tbody></table></figure><br></div></div>
+
+
+<h2 id="問題八：數據類型"><a href="#問題八：數據類型" class="headerlink" title="問題八：數據類型"></a>問題八：數據類型</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> &#123;&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> []);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">undefined</span>);</span><br></pre></td></tr></table></figure>
+<div><input id="Q_8" value="解答" type="button"><div id="A_8" style="display:none"><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">object</div><div class="line">object</div><div class="line">object</div><div class="line"><span class="literal">undefined</span></div></pre></td></tr></tbody></table></figure></div></div>
+
+
+<h2 id="問題九：事件循環"><a href="#問題九：事件循環" class="headerlink" title="問題九：事件循環"></a>問題九：事件循環</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">   setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">2</span>); &#125;, <span class="number">1000</span>);</span><br><span class="line">   setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">3</span>); &#125;, <span class="number">0</span>);</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line">printing();</span><br></pre></td></tr></table></figure>
+<div><input id="Q_9" value="解答" type="button"><div id="A_9" style="display:none"><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">2</span></div></pre></td></tr></tbody></table></figure></div></div>
+
+
+<h2 id="問題十：算法"><a href="#問題十：算法" class="headerlink" title="問題十：算法"></a>問題十：算法</h2><p>寫出一個方法 <code>isPrime()</code>的函數，當參數是值數時<code>true</code>，否則回傳<code>false</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// todo</span></span><br></pre></td></tr></table></figure></p>
+<div><input id="Q_10" value="解答" type="button"><div id="A_10" style="display:none"><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">number</span>) </span>{</div><div class="line">   <span class="comment">// If your browser doesn’t support the method Number.isInteger of ECMAScript 6,</span></div><div class="line">   <span class="comment">// you can implement your own pretty easily</span></div><div class="line">   <span class="keyword">if</span> (<span class="keyword">typeof</span> number !== <span class="string">‘number’</span> || !<span class="built_in">Number</span>.isInteger(number)) {</div><div class="line">      <span class="comment">// Alternatively you can throw an error.</span></div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   }</div><div class="line">   <span class="keyword">if</span> (number &lt; <span class="number">2</span>) {</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   }</div><div class="line"> </div><div class="line">   <span class="keyword">if</span> (number === <span class="number">2</span>) {</div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">   } <span class="keyword">else</span> <span class="keyword">if</span> (number % <span class="number">2</span> === <span class="number">0</span>) {</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   }</div><div class="line">   <span class="keyword">var</span> squareRoot = <span class="built_in">Math</span>.sqrt(number);</div><div class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">3</span>; i &lt;= squareRoot; i += <span class="number">2</span>) {</div><div class="line">      <span class="keyword">if</span> (number % i === <span class="number">0</span>) {</div><div class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">      }</div><div class="line">   }</div><div class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">}</div></pre></td></tr></tbody></table></figure></div></div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>
+    $().ready(function(){
+        $('#Q_1').on('click', function(e) { $('#A_1').toggle() });
+        $('#Q_2').on('click', function(e) { $('#A_2').toggle() });
+        $('#Q_3').on('click', function(e) { $('#A_3').toggle() });
+        $('#Q_4').on('click', function(e) { $('#A_4').toggle() });
+        $('#Q_5').on('click', function(e) { $('#A_5').toggle() });
+        $('#Q_6').on('click', function(e) { $('#A_6').toggle() });
+        $('#Q_7').on('click', function(e) { $('#A_7').toggle() });
+        $('#Q_8').on('click', function(e) { $('#A_8').toggle() });
+        $('#Q_9').on('click', function(e) { $('#A_9').toggle() });
+        $('#Q_10').on('click', function(e) { $('#A_10').toggle() });
+    });
+
+</script>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/04/20171204_javascript_bindapplycall/" rel="next" title="JavaScript bind、call()、apply()">
+                <i class="fa fa-chevron-left"></i> JavaScript bind、call()、apply()
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/06/20171206_js_skill/" rel="prev" title="JavaScript 開發上的小技巧">
+                JavaScript 開發上的小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概要
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/SLM.jpg" alt="Stoner">
+            
+              <p class="site-author-name" itemprop="name">Stoner</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">文章</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分類</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">標籤</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Stoner609" title="GitHub &rarr; https://github.com/Stoner609" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#問題一：作用域-Scope"><span class="nav-number">1.</span> <span class="nav-text">問題一：作用域(Scope)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題二：創建原生方法"><span class="nav-number">2.</span> <span class="nav-text">問題二：創建原生方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題三：變量提升（Hoisting）"><span class="nav-number">3.</span> <span class="nav-text">問題三：變量提升（Hoisting）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題四：在JavaScript中，this是如何工作的"><span class="nav-number">4.</span> <span class="nav-text">問題四：在JavaScript中，this是如何工作的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題五：call-和-apply"><span class="nav-number">5.</span> <span class="nav-text">問題五：call() 和 apply()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題六：閉包-Closures"><span class="nav-number">6.</span> <span class="nav-text">問題六：閉包(Closures)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題七：閉包-Closures"><span class="nav-number">7.</span> <span class="nav-text">問題七：閉包(Closures)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題八：數據類型"><span class="nav-number">8.</span> <span class="nav-text">問題八：數據類型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題九：事件循環"><span class="nav-number">9.</span> <span class="nav-text">問題九：事件循環</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題十：算法"><span class="nav-number">10.</span> <span class="nav-text">問題十：算法</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-bomb"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stoner</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
