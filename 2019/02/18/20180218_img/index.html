@@ -104,25 +104,22 @@
 
 
 
-  <meta name="description" content="取得訪問者的機器名稱，管制該機器能使用的功能">
-<meta name="keywords" content="Node.js">
+  <meta name="keywords" content="Node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="取得客戶端ip位置">
-<meta property="og:url" content="http://yoursite.com/2018/12/19/20181219-node-getMachineName/index.html">
+<meta property="og:title" content="將合成的圖片 存入 Server 端">
+<meta property="og:url" content="http://yoursite.com/2019/02/18/20180218_img/index.html">
 <meta property="og:site_name" content="Stoner Blog">
-<meta property="og:description" content="取得訪問者的機器名稱，管制該機器能使用的功能">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-01-09T01:07:43.471Z">
+<meta property="og:updated_time" content="2019-02-18T07:45:33.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="取得客戶端ip位置">
-<meta name="twitter:description" content="取得訪問者的機器名稱，管制該機器能使用的功能">
+<meta name="twitter:title" content="將合成的圖片 存入 Server 端">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/19/20181219-node-getMachineName/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/18/20180218_img/">
 
 
 
@@ -132,7 +129,7 @@
   };
 </script>
 
-  <title>取得客戶端ip位置 | Stoner Blog</title>
+  <title>將合成的圖片 存入 Server 端 | Stoner Blog</title>
   
 
 
@@ -338,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/20181219-node-getMachineName/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/20180218_img/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stoner">
@@ -355,7 +352,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">取得客戶端ip位置
+          <h1 class="post-title" itemprop="name headline">將合成的圖片 存入 Server 端
 
               
             
@@ -381,24 +378,12 @@
                 
               
 
-              <time title="創建時間：2018-12-19 09:10:57" itemprop="dateCreated datePublished" datetime="2018-12-19T09:10:57+08:00">2018-12-19</time>
+              <time title="創建時間：2019-02-18 15:44:18 / 修改時間：15:45:33" itemprop="dateCreated datePublished" datetime="2019-02-18T15:44:18+08:00">2019-02-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新於</span>
-                
-                <time title="修改時間：2019-01-09 09:07:43" itemprop="dateModified" datetime="2019-01-09T09:07:43+08:00">2019-01-09</time>
               
             
           </span>
@@ -449,28 +434,7 @@
       
 
       
-        <p>取得訪問者的機器名稱，管制該機器能使用的功能</p>
-<a id="more"></a>
-<h2 id="一般方式取得-client-ip"><a href="#一般方式取得-client-ip" class="headerlink" title="一般方式取得 client ip"></a>一般方式取得 client ip</h2><p>碰到一個需求是要知道訪問者的機器，做後續相關的事情 (例如針對該電腦操作”列表機”之類的機器)</p>
-<p>目前得知以下可以取得訪問者的 ip</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">request.connection.remoteAddress; <span class="comment">// ::ffff:192.xxx.xxx.xxx (客戶端ip)</span></span><br><span class="line">request.connection.remotePort; <span class="comment">// port</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//other</span></span><br><span class="line">request.connection.localAddress; <span class="comment">// ::ffff:192.xxx.xxx.xxx (本地端機器ip)</span></span><br><span class="line">request.connection.localPort; <span class="comment">// port</span></span><br></pre></td></tr></table></figure>
-<p>node.js 在啟動時，<code>.listen(port)</code>沒有特別設置的話默認會是 <code>ipv6</code>，取得的 ip 會長<code>::ffff:192.xxx.xxx.xx</code><br>要達到想到的效果，要將<code>.listen(port, &#39;0.0.0.0&#39;)</code>，就可以取到 <code>ipv4</code>，雖然取得 <code>ipv6</code>也是可以用表達是過濾掉 <code>::ffff:</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.connection.remoteAddress.replace(<span class="regexp">/^.*:/</span>, <span class="string">""</span>); <span class="comment">// ::ffff:192.xxx.xxx.xxx &gt;&gt;&gt; 192.xxx.xxx.xxx</span></span><br></pre></td></tr></table></figure>
-<h2 id="涉及代理情況下取得-client-ip"><a href="#涉及代理情況下取得-client-ip" class="headerlink" title="涉及代理情況下取得 client ip"></a>涉及代理情況下取得 client ip</h2><p>server 假如是有<code>代理(proxy)</code>的話，就要用以下方式抓出 ip<br>這方式可能會取得多個 ip，因為 <code>X-Forwarded-For: OriginatingClientIPAddress, proxy1-IPAddress, proxy2-IPAddress</code><br>最左邊是原始客戶端，並且每個通過請求的後續代理會將 ip 添加到接收請求的位置。<br>以上的例子通過了 proxy1 再來是 proxy2。proxy2 是請求的遠程位置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// X-Forwarded-For - The IP address of the client before it went through the proxy</span></span><br><span class="line"><span class="comment">// X-Forwarded-Port - The port of the client before it went through the proxy</span></span><br><span class="line">request.headers[<span class="string">"x-forwarded-for"</span>];</span><br><span class="line">request.headers[<span class="string">"X-Forwarded-Port"</span>];</span><br></pre></td></tr></table></figure>
-<h2 id="建議取得-client-ip-的方式"><a href="#建議取得-client-ip-的方式" class="headerlink" title="建議取得 client ip 的方式"></a>建議取得 client ip 的方式</h2><p><a href="https://stackoverflow.com/users/3529903/arnav-gupta" target="_blank" rel="noopener">Arnav Gupta</a> 提出的取得方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ip =</span><br><span class="line">  (req.headers[<span class="string">"x-forwarded-for"</span>] || <span class="string">""</span>).split(<span class="string">","</span>).pop() ||</span><br><span class="line">  req.connection.remoteAddress ||</span><br><span class="line">  req.socket.remoteAddress ||</span><br><span class="line">  req.connection.socket.remoteAddress;</span><br></pre></td></tr></table></figure>
-<p>相關文件 <a href="https://nodejs.org/api/net.html#net_server_listen_port_host_backlog_callback" target="_blank" rel="noopener">node.js API: net.module - server.listen</a></p>
-<h2 id="取得客戶端機器名稱"><a href="#取得客戶端機器名稱" class="headerlink" title="取得客戶端機器名稱"></a>取得客戶端機器名稱</h2><p>取得 ip 之後，就可以用 node 的 dns module 找出機器名稱。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'dns'</span>).reverse(req.connection.remoteAddress, <span class="function"><span class="keyword">function</span>(<span class="params">err, domains</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(domains);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>相關文件 <a href="https://nodejs.org/docs/v0.3.1/api/all.html#dns.reverse" target="_blank" rel="noopener">dns.reverse</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p><a href="https://stackoverflow.com/questions/38423930/how-to-retrieve-client-and-server-ip-address-and-port-number-in-node-js" target="_blank" rel="noopener">How to retrieve client and server IP address and port number in Node.js</a></p>
-<p><a href="https://stackoverflow.com/questions/31100703/stripping-ffff-prefix-from-request-connection-remoteaddress-nodejs" target="_blank" rel="noopener">Stripping “::ffff:” prefix from request.connection.remoteAddress nodejs</a></p>
-<p><a href="https://stackoverflow.com/questions/8107856/how-to-determine-a-users-ip-address-in-node" target="_blank" rel="noopener">How to determine a user’s IP address in node</a></p>
-<p><a href="https://stackoverflow.com/questions/42151493/how-to-get-client-computer-name-in-node-js" target="_blank" rel="noopener">How to get client computer name in node js</a></p>
-<p><a href="https://code.i-harness.com/zh-TW/q/7bb750" target="_blank" rel="noopener">[api] 如何在節點中確定用戶的 IP 地址</a></p>
-<p><a href="https://hk.saowen.com/a/477734b02f981c88df93cd4cc62b1c34acfd344bd40bab93e0821ac5d6e900d1" target="_blank" rel="noopener">nodejs 獲取客户端 ip 地址</a></p>
-
+        
       
     </div>
 
@@ -506,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/13/20181213-cannot-delete-file/" rel="next" title="Window - 無法刪除資料「找不到此項目」">
-                <i class="fa fa-chevron-left"></i> Window - 無法刪除資料「找不到此項目」
+              <a href="/2019/01/09/20190109-hexo-blog/" rel="next" title="在其他電腦中操作設定好主題的 Hexo Blog">
+                <i class="fa fa-chevron-left"></i> 在其他電腦中操作設定好主題的 Hexo Blog
               </a>
             
           </div>
@@ -515,10 +479,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/25/20181225-js-strategy/" rel="prev" title="React - Handling Events">
-                React - Handling Events <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,17 +523,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            本站概要
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -702,22 +653,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般方式取得-client-ip"><span class="nav-number">1.</span> <span class="nav-text">一般方式取得 client ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及代理情況下取得-client-ip"><span class="nav-number">2.</span> <span class="nav-text">涉及代理情況下取得 client ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建議取得-client-ip-的方式"><span class="nav-number">3.</span> <span class="nav-text">建議取得 client ip 的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取得客戶端機器名稱"><span class="nav-number">4.</span> <span class="nav-text">取得客戶端機器名稱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考"><span class="nav-number">5.</span> <span class="nav-text">參考</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
